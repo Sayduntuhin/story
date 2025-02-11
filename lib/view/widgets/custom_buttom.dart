@@ -10,6 +10,7 @@ class CustomButton extends StatelessWidget {
   final Color buttonColor;
   final Color textColor;
   final bool isPush;
+  final bool isPop;
   final void Function()?onPressed;
 
   CustomButton({
@@ -19,14 +20,21 @@ class CustomButton extends StatelessWidget {
     required this.textColor,
     this.isPush = false,
      this.onPressed,
+    this.isPop = false
   });
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
-       // onPressed!;
-          if (isPush) {
+        if (onPressed != null) {
+          onPressed!();
+        }
+
+        if (isPop) {
+          context.pop(); // This pops the current page off the navigation stack
+        }
+        else if (isPush) {
         /*    onPressed!;*/
             context.push(route);
           } else {

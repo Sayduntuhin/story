@@ -1,4 +1,7 @@
 import 'package:go_router/go_router.dart';
+import 'package:story_always/view/aiBot/pages/ai_bot_page.dart';
+import 'package:story_always/view/allBook/pages/all_book_page.dart';
+import 'package:story_always/view/createBook/pages/create_book.dart';
 import 'package:story_always/view/home/pages/home_page.dart';
 import 'package:story_always/view/order/page/order_page.dart';
 import 'package:story_always/view/subscription/pages/subcriptions_page.dart';
@@ -58,9 +61,22 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/subscription',
       builder: (context, state) => UpgradePage(),
-    ),  GoRoute(
+    ),
+    GoRoute(
       path: '/order',
       builder: (context, state) => OrderPage(),
+    ),
+    GoRoute(
+      path: '/allBook',
+      builder: (context, state) => AllBooksPage(),
+    ),
+    GoRoute(
+      path: '/createBook',
+      builder: (context, state) => CreateBookPage(),
+    ),
+    GoRoute(
+      path: '/aiBot',
+      builder: (context, state) => AIBotPage(),
     ),
   ],
 );

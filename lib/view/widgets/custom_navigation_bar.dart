@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:story_always/view/allBook/pages/all_book_page.dart';
 import '../home/pages/home_page.dart';
 import '../profile/pages/profile_page.dart';
 
@@ -17,6 +18,7 @@ class _MainScreenState extends State<MainScreen> {
   // List of pages
   final List<Widget> _pages = [
      HomePage(),
+    AllBooksPage(),
     ProfilePage(),
   ];
 

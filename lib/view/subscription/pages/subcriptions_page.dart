@@ -75,6 +75,7 @@ class _UpgradePageState extends State<UpgradePage> {
             child: CustomButton(
                 text: "UPGRADE NOW",
                 route: '/order',
+                 isPush: true,
                 buttonColor: buttonColor,
                 textColor: buttonTextColor),
           ),

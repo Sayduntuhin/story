@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:story_always/view/widgets/custom_buttom.dart';
 import '../../../themes/colors.dart';
 
 class OrderPage extends StatefulWidget {
@@ -14,9 +15,7 @@ class _OrderPageState extends State<OrderPage> {
   final TextEditingController _couponController = TextEditingController();
 
   bool _isCouponApplied = false;
-  double _totalPrice = 60.0; // Price after discount (initial price without coupon)
-
-  // Function to apply coupon and update the price
+  double _totalPrice = 60.0;
   void _applyCoupon() {
     setState(() {
       if (_couponController.text == "GIVE50") {
@@ -31,15 +30,13 @@ class _OrderPageState extends State<OrderPage> {
       }
     });
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-
           Stack(
             children: [
               // Container with Image
@@ -72,7 +69,7 @@ class _OrderPageState extends State<OrderPage> {
                     decoration: BoxDecoration(
                       color: Colors.black12,
                       borderRadius:
-                      BorderRadius.circular(30.r), // Rounded corners
+                          BorderRadius.circular(30.r), // Rounded corners
                     ),
                     child: Icon(
                       Icons.close,
@@ -84,21 +81,42 @@ class _OrderPageState extends State<OrderPage> {
               ),
             ],
           ),
-          SizedBox(height: 50.h,),
-          _buildTextField("Book Name" , _bookNameController , TextInputType.text),
-          _buildTextField("Customer Name" , _bookNameController , TextInputType.text),
-          _buildTextField("Book Name" , _bookNameController , TextInputType.text),
-          _buildTextField("Book Name" , _bookNameController , TextInputType.text),
-
-
-          Row(
-            children: [
-              Text("Price: \$70", style: TextStyle(fontSize: 18.sp)),
-            ],
+          SizedBox(
+            height: 50.h,
           ),
-          SizedBox(height: 20.h),
-
-          // Coupon Code
+          _buildTextField("Book Name", _bookNameController, TextInputType.text,),
+          _buildTextField("Customer Name", _bookNameController, TextInputType.text),
+          _buildTextField("Delivery address", _bookNameController, TextInputType.text, 4),
+          _buildTextField("Price", _bookNameController, TextInputType.number),
+          _buildTextField("Coupon code", _bookNameController, TextInputType.number),
+          Padding(
+            padding: const EdgeInsets.only(left: 40, right: 40),
+            child: Divider(
+              color: textColor,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 10, left: 45),
+            child: Row(
+              children: [
+                SizedBox(
+                  width: 100,
+                  child: Text(
+                    "Total Price",
+                    style:
+                        TextStyle(fontWeight: FontWeight.w600, fontSize: 16.sp),
+                  ),
+                ),
+                SizedBox(
+                  width: 150,
+                ),
+                Text("\$70",
+                    style: TextStyle(
+                        fontWeight: FontWeight.w600, fontSize: 16.sp)),
+              ],
+            ),
+          ),
+          /*     // Coupon Code
           GestureDetector(
             onTap: () {
               setState(() {
@@ -135,21 +153,17 @@ class _OrderPageState extends State<OrderPage> {
                   ),
                 ],
               ),
-            ),
-          SizedBox(height: 20.h),
-
-          // Total Price
-          Row(
-            children: [
-              Text("Total Price: \$$_totalPrice", style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold)),
-            ],
-          ),
-          SizedBox(height: 30.h),
-
-          // Order Now Button
+            ),*/
+          Spacer(),
+          CustomButton(
+              text: "ORDER NOW",
+              route: "",
+              buttonColor: buttonColor,
+              textColor: buttonTextColor),
+          SizedBox(height: 50,)
+          /*
           ElevatedButton(
             onPressed: () {
-              // Handle order submission
               print("Order placed with total price: \$$_totalPrice");
             },
             style: ElevatedButton.styleFrom(
@@ -163,17 +177,20 @@ class _OrderPageState extends State<OrderPage> {
               "ORDER NOW",
               style: TextStyle(fontSize: 18.sp, color: Colors.white),
             ),
-          ),
+          ),*/
         ],
       ),
     );
   }
-  Widget _buildTextField(String featureText, TextEditingController controller,TextInputType keyboardType) {
+
+  Widget _buildTextField(String featureText, TextEditingController controller,
+      TextInputType keyboardType,
+      [int line = 1]) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(
             width: 200,
@@ -181,38 +198,47 @@ class _OrderPageState extends State<OrderPage> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 SizedBox(
-                  width : 150,
+                  width: 150,
                   child: Text(
                     featureText,
-                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16.sp),
+                    style:
+                        TextStyle(fontWeight: FontWeight.w600, fontSize: 16.sp),
                   ),
                 ),
                 Text(
                   ":",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.sp),
+                  style:
+                      TextStyle(fontWeight: FontWeight.bold, fontSize: 20.sp),
                 ),
               ],
             ),
           ),
           SizedBox(
-            height: 30.h,
-            width: 139.w,
-            child: TextFormField(
-              controller: controller,
-              keyboardType: keyboardType,
-              decoration: InputDecoration(
-                focusColor: textColor,
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.r),
-                  borderSide: BorderSide(color: textColor),
-                ),
-                enabledBorder:OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.r),
-                  borderSide: BorderSide(color: textColor),
-                ) ,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.r),
-                  borderSide: BorderSide(color: textColor),
+            width: 150.w,
+            child: Center(
+              child: TextFormField(
+                controller: controller,
+                textAlign: TextAlign.start,
+                keyboardType: keyboardType,
+                maxLines: line,
+                minLines: line,
+                decoration: InputDecoration(
+                  isDense: true,
+                  contentPadding:
+                      EdgeInsets.symmetric(vertical: 2.h, horizontal: 10),
+                  focusColor: textColor,
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.r),
+                    borderSide: BorderSide(color: textColor),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.r),
+                    borderSide: BorderSide(color: textColor),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.r),
+                    borderSide: BorderSide(color: textColor),
+                  ),
                 ),
               ),
             ),

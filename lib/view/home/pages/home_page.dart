@@ -96,9 +96,10 @@ class SecondPage extends StatelessWidget {
             SizedBox(height: 40.h),
             CustomButton(
               text: 'TALK TO TITI',
-              route: '/chat',
+              route: '/aiBot',
               buttonColor: buttonColor,
               textColor: buttonTextColor,
+              isPush: true,
             ),
           ],
         ),
