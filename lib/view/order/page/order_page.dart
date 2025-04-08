@@ -225,7 +225,7 @@ class _OrderPageState extends State<OrderPage> {
                 decoration: InputDecoration(
                   isDense: true,
                   contentPadding:
-                      EdgeInsets.symmetric(vertical: 2.h, horizontal: 10),
+                  EdgeInsets.symmetric(vertical: 2.h, horizontal: 10),
                   focusColor: textColor,
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.r),

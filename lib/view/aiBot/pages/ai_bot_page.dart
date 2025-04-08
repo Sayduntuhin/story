@@ -26,7 +26,7 @@ class _AIBotPageState extends State<AIBotPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Hello, and welcome!",
+              "Hello, and welcome!  ",
               style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w600),
             ), Text(
               "I'm here to help you create a beautiful memoir of your life. 😄",
